@@ -1,5 +1,12 @@
-{% extends "lottopy/base.html" %}
+{% extends 'lottopy/base.html' %}
 {% block content %}
-    <h1>I finally got my fucking template to work!</h1>
-    <p class="lead">Apparently developers who use this framework earn an average $112,000 a year. We gon' be rich!</p>
+    <h1>Find your lucky numbers and hit big!</h1>
+    <p class="lead">The purpose of this site is to analyze existing West Virginia winning lottery numbers, and return only the most likely combinations. This can be used to gain an edge on the lottery system, and help you win big!</p>
+        <div class=table>
+            <tr><svg width="250" height="250" class="col-2" align=left src="{% include 'pics/powerball-01.svg'%}"></svg></tr>
+            <tr text-align=right>I hate web design!</tr>
+            
+        </div>
+    <h4 class="card-footer" text-align=bottom>Dislaimer: WV Lottopy developers do not guarantee a win on the first or even the fortieth set of numbers. This is used to gain an <b><i>edge </i></b> over those who do not use this program.</h4>
 {% endblock content %}
+

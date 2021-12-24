@@ -9,7 +9,7 @@
         {% if title %}
             <title>WV Lottopy | {{title}}</title>
         {% else %}
-            <title>WV Lottopy Homepage</title>
+            <title>WV Lottopy | Homepage</title>
         {% endif %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'bootstrap/assets/favicon.ico' %}" />
@@ -21,19 +21,22 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">West Virginia Lottery Predictions</a>
+                
+                <a class="navbar-brand" href="{% url 'home' %}"> 
+                    <img src="{% static 'bootstrap/pics/WVBall.png' %}" width="25" height="25" padding="1em" float="left">
+                    West Virginia Lottery Predictions</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'lottopy' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about'%}">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'about'%}" >About</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#" >Login</a></li>
+                                <li><a class="dropdown-item" href="#">Contact (WIP)</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" target="_blank" rel="noreferrer noopener" href="https://wvlottery.com/">WV Lottery Site</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -43,7 +46,8 @@
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
-                {% block content %}{% endblock %} {% block about %}{% endblock %}
+                {% block content %}{% endblock %} 
+                {% block about %}{% endblock %}
                
             </div>
         </div>
