@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p4+um@+npnfqv=mul^--gz@$36@&7^)h@o*72&yqd@n00x$%e&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fresh-fish-51.loca.lt']
 
 
 # Application definition

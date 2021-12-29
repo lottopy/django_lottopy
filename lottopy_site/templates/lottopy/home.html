@@ -2,11 +2,65 @@
 {% block content %}
     <h1>Find your lucky numbers and hit big!</h1>
     <p class="lead">The purpose of this site is to analyze existing West Virginia winning lottery numbers, and return only the most likely combinations. This can be used to gain an edge on the lottery system, and help you win big!</p>
-        <div class=table>
-            <tr><svg width="250" height="250" class="col-2" align=left src="{% include 'pics/powerball-01.svg'%}"></svg></tr>
-            <tr text-align=right>I hate web design!</tr>
-            
+    <section class="py-5 border-bottom" id="features">
+        <hr class="container px-5 my-5">
+            <div class="row gx-5">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                    <h2 class="col-auto" width=200>PowerBall</h2>
+                    <p>{{ numbers }}</p>
+                    <a>
+                        Draws on ... Last draw: {{ pb_date }}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                    <h2 class="col-auto" width=200>Mega Millions</h2>
+                    <p>{{ numbers }}</p>
+                    <a>
+                        Draws on ... Last draw: {{ mm_date }}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                    <h2 class="col-auto" width=200>Lotto America</h2>
+                    <p>{{ numbers }}</p>
+                    <a>
+                        Draws on ... Last draw: {{ la_date }}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                    <h2 class="col-auto" width=200>Daily4</h2>
+                    <p>{{ numbers }}</p>
+                    <a>
+                        Draws on ... Last draw: {{ d4_date }}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                    <h2 class="col-auto" width=200>Daily3</h2>
+                    <p>{{ numbers }}</p>
+                    <a>
+                        Draws on ... Last draw: {{ d3_date }}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                    <h2 class="col-auto" width=200>Cash25</h2>
+                    <p>{{ numbers }}</p>
+                    <a>
+                        Draws on ... Last draw: {{ c25_date }}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-    <h4 class="card-footer" text-align=bottom>Dislaimer: WV Lottopy developers do not guarantee a win on the first or even the fortieth set of numbers. This is used to gain an <b><i>edge </i></b> over those who do not use this program.</h4>
+    </section>
+    <h6 class="card-footer" text-align=bottom>Disclaimer: WV Lottopy developers do not guarantee a win on the first or even the fortieth set of numbers. This is used to gain an <b><i>edge </i></b> over those who do not use this program.</h6>
 {% endblock content %}
-
