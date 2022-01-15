@@ -1,4 +1,5 @@
 # WVLottopy: Matteo DiBiagio
+from encodings import utf_8
 from sheet2dict import Worksheet
 import pandas as pd
 import requests
@@ -23,7 +24,7 @@ df2 = df[['Date', 'Numbers', 'PB', 'PPX', 'Winners WV Only', 'Payout WV Only']]
 #print(df2)
 
 # To excel file
-df2.to_excel('../lottopy/lotto.xlsx')
+df2.to_excel('../lottopy_web_edition/lotto.xlsx')
 
 #Insert complete path to the excel file and index of the worksheet
 df = pd.read_excel("lotto.xlsx", sheet_name=0)
@@ -64,15 +65,18 @@ for n in range(0, 69):
     
 for n in range(0, 26):
     most_common_pb = Counter(PB).most_common(1)
-    likely_pb = [v[0] for v in most_common_pb]
+    likely_pb = str([v[0] for v in most_common_pb])
     frequency_pb = [v[-1] for v in most_common_pb]
 
 sorted_nums = sorted(likely_nums)
+final_nums = str("-".join(sorted_nums))
 total_freq = sum(frequency + frequency_pb) 
-chance  = [(total_freq / 292201338) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+chance  = str([(total_freq / 292201338) * 100]) # Chance = number call freq / all possible numbers i.e. 11238513
 
 #print("Likely numbers are . . . ", sorted_nums, "PB:", likely_pb, "\n", "With percent chance of winning being", chance[0]*100, "%")
 
-f = open('pb_ans.csv', 'w')
+f = open('pb_ans.csv', 'w', encoding='utf_8')
 writer = csv.writer(f)
-writer.writerow(sorted_nums + likely_pb + chance)
+writer.writerow([final_nums])
+writer.writerow([likely_nums])
+writer.writerow([chance])
