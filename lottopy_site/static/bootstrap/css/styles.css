@@ -89,6 +89,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 .box
 {
   top: 50%;
@@ -727,6 +728,17 @@ progress {
 .row-cols-auto > * {
   flex: 0 0 auto;
   width: auto;
+}
+
+.mf-box {
+  position: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  fill: red;
+  margin: 4px;
 }
 
 .row-cols-1 > * {
@@ -7865,7 +7877,7 @@ textarea.form-control-lg {
 
 .bg-primary {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+  /*background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;*/
 }
 
 .bg-secondary {
