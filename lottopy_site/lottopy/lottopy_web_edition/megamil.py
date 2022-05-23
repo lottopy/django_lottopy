@@ -23,7 +23,7 @@ df2 = df[['Date', 'Numbers', 'MB', 'MP']]
 #print(df2)
 
 # To excel file
-df2.to_excel('../lottopy/lotto_megamil.xlsx')
+df2.to_excel('./lotto_megamil.xlsx')
 
 #Insert complete path to the excel file and index of the worksheet
 df = pd.read_excel("lotto_megamil.xlsx", sheet_name=0)
@@ -31,7 +31,7 @@ df = pd.read_excel("lotto_megamil.xlsx", sheet_name=0)
 # insert the name of the column as a string in brackets
 date = list(df['Date']) 
 nums = list(df['Numbers'].astype('str')) 
-PB = list(df['MB'].astype('int'))
+PBs = list(df['MB'].astype('int'))
 #appearances = list(df2['Winners WV Only'].astype('int'))
 
 # Index for each row 
@@ -53,7 +53,7 @@ ws.xlsx_to_dict(path='lotto_megamil.xlsx', select_sheet='Sheet1')
 # Formatting 
 hyphenfree = []
 for x in nums:
-    hyphenfree.append(x.replace('-',', ')) 
+    hyphenfree.append(x.replace('–',', ')) 
 splitlist = ", ".join(hyphenfree)
 sep = splitlist.split(", ")
 
@@ -63,15 +63,19 @@ for n in range(0, 70):
     frequency = [v[-1] for v in most_common]
     
 for n in range(0, 25):
-    most_common_pb = Counter(PB).most_common(1)
-    likely_pb = [v[0] for v in most_common_pb]
+    most_common_pb = Counter(PBs).most_common(1)
+    MB = [v[0] for v in most_common_pb]
     frequency_pb = [v[-1] for v in most_common_pb]
 
 sorted_nums = sorted(likely_nums)
 total_freq = sum(frequency + frequency_pb) 
-chance  = [(total_freq / 302575350) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+Chance = [(total_freq / 302575350) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+Winning_Numbers = str("-".join(sorted_nums))
 
 #print("Likely numbers are . . . ", sorted_nums, "MB:", likely_pb, "\n", "With percent chance of winning being", chance[0]*100, "%")
-f = open('mm_ans.csv', 'w')
-writer = csv.writer(f)
-writer.writerow(sorted_nums + likely_pb + chance)
+d = dict(((k, eval (k)) for k in ('Winning_Numbers', 'MB', 'Chance')))
+h = 'Winning_Numbers', 'MB', 'Chance'
+f = open('mm_ans.csv', 'w', encoding='utf_8')
+writer = csv.DictWriter(f, fieldnames=h)
+writer.writeheader()
+writer.writerow(d)
