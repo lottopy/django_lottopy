@@ -23,7 +23,7 @@ df2 = df[['Date', 'Numbers']]
 #print(df2)
 
 # To excel file
-df2.to_excel('../lottopy/daily4.xlsx')
+df2.to_excel('./daily4.xlsx')
 
 #Insert complete path to the excel file and index of the worksheet
 df = pd.read_excel("daily4.xlsx", sheet_name=0)
@@ -53,7 +53,7 @@ ws.xlsx_to_dict(path='daily4.xlsx', select_sheet='Sheet1')
 # Formatting 
 hyphenfree = []
 for x in nums:
-    hyphenfree.append(x.replace('-',', ')) 
+    hyphenfree.append(x.replace('–',', ')) 
 splitlist = ", ".join(hyphenfree)
 sep = splitlist.split(", ")
 
@@ -69,9 +69,13 @@ for n in range(0, 9):
 
 sorted_nums = sorted(likely_nums)
 total_freq = sum(frequency) 
-chance  = [(total_freq / 10000) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+Chance  = [(total_freq / 10000) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+Winning_Numbers = str("-".join(sorted_nums))
 
 #print("Likely numbers are . . . ", sorted_nums, "\n", "With percent chance of winning being", chance[0]*100, "%")
-f = open('d4_ans.csv', 'w')
-writer = csv.writer(f)
-writer.writerow(sorted_nums + chance)
+d = dict(((k, eval (k)) for k in ('Winning_Numbers','Chance')))
+h = 'Winning_Numbers', 'Chance'
+f = open('d4_ans.csv', 'w', encoding='utf_8')
+writer = csv.DictWriter(f, fieldnames=h)
+writer.writeheader()
+writer.writerow(d)

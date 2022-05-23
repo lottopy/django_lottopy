@@ -1,5 +1,4 @@
 # WVLottopy: Matteo DiBiagio
-from encodings import utf_8
 from sheet2dict import Worksheet
 import pandas as pd
 import requests
@@ -24,7 +23,7 @@ df2 = df[['Date', 'Numbers', 'PB', 'PPX', 'Winners WV Only', 'Payout WV Only']]
 #print(df2)
 
 # To excel file
-df2.to_excel('../lottopy_web_edition/lotto.xlsx')
+df2.to_excel('./lotto.xlsx')
 
 #Insert complete path to the excel file and index of the worksheet
 df = pd.read_excel("lotto.xlsx", sheet_name=0)
@@ -32,7 +31,7 @@ df = pd.read_excel("lotto.xlsx", sheet_name=0)
 # insert the name of the column as a string in brackets
 date = list(df['Date']) 
 nums = list(df['Numbers'].astype('str')) 
-PB = list(df['PB'].astype('int'))
+PBs = list(df['PB'].astype('int'))
 appearances = list(df2['Winners WV Only'].astype('int'))
 
 # Index for each row 
@@ -54,7 +53,7 @@ ws.xlsx_to_dict(path='lotto.xlsx', select_sheet='Sheet1')
 # Formatting 
 hyphenfree = []
 for x in nums:
-    hyphenfree.append(x.replace('-',', ')) 
+    hyphenfree.append(x.replace('–',', ')) 
 splitlist = ", ".join(hyphenfree)
 sep = splitlist.split(", ")
 
@@ -64,19 +63,20 @@ for n in range(0, 69):
     frequency = [v[-1] for v in most_common]
     
 for n in range(0, 26):
-    most_common_pb = Counter(PB).most_common(1)
-    likely_pb = str([v[0] for v in most_common_pb])
+    most_common_pb = Counter(PBs).most_common(1)
+    PB = [v[0] for v in most_common_pb]
     frequency_pb = [v[-1] for v in most_common_pb]
 
 sorted_nums = sorted(likely_nums)
-final_nums = str("-".join(sorted_nums))
 total_freq = sum(frequency + frequency_pb) 
-chance  = str([(total_freq / 292201338) * 100]) # Chance = number call freq / all possible numbers i.e. 11238513
+Chance = [(total_freq / 292201338) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+Winning_Numbers = str("-".join(sorted_nums))
 
 #print("Likely numbers are . . . ", sorted_nums, "PB:", likely_pb, "\n", "With percent chance of winning being", chance[0]*100, "%")
 
+d = dict(((k, eval (k)) for k in ('Winning_Numbers', 'PB', 'Chance')))
+h = 'Winning_Numbers', 'PB', 'Chance'
 f = open('pb_ans.csv', 'w', encoding='utf_8')
-writer = csv.writer(f)
-writer.writerow([final_nums])
-writer.writerow([likely_nums])
-writer.writerow([chance])
+writer = csv.DictWriter(f, fieldnames=h)
+writer.writeheader()
+writer.writerow(d)
