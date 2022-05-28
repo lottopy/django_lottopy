@@ -1,8 +1,10 @@
 {% extends 'lottopy/base.html' %}
 {% block content %}
+    <div class="container bg-light">
     <h1>Find your lucky numbers and hit big!</h1>
-    <p class="lead">The purpose of this site is to analyze existing West Virginia winning lottery numbers, and return only the most likely combinations. This can be used to gain an edge on the lottery system, and help you win big!</p>
-    <section class="py-5 border-top" id="features">
+    <p class="lead border-bottom">The purpose of this site is to analyze existing West Virginia winning lottery numbers, and return only the most likely combinations. This can be used to gain an edge on the lottery system, and help you win big!</p>
+    </div>
+    <section class="py-5" id="features">
         <div class="container px-5 my-5">
             <content class="row gx-5 ">
                 <div class="col-lg-4 mb-5 mb-lg-0">
@@ -13,7 +15,7 @@
                         Draws every Monday, Wednesday, and Saturday at 11:00 PM {# Last draw: {{ pb_date }} #}
                         <i class="bi bi-arrow-right"></i>
                     </a>
-                </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i>
@@ -23,7 +25,7 @@
                         Draws every Tuesday and Friday night at 10:59 PM {# Last draw: {{ mm_date }} #}
                         <i class="bi bi-arrow-right"></i>
                     </a>
-                </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i>
@@ -33,7 +35,7 @@
                         Draws every Wednesday and Saturday night at 10:30 PM {# Last draw: {{ la_date }} #}
                         <i class="bi bi-arrow-right"></i>
                     </a>
-                </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i>
@@ -43,7 +45,7 @@
                         Draws every weekday but Sunday at 6:59 PM {# Last draw: {{ d3_date }} #}
                         <i class="bi bi-arrow-right"></i>
                     </a>
-                </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i>
@@ -53,9 +55,9 @@
                         Draws every weekday but Sunday at 6:59 PM {# Last draw: {{ d4_date }} #}
                         <i class="bi bi-arrow-right"></i>
                     </a>
+                    </div>
                 </div>
-                </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i>
                     <h2 class="col-auto" width=200>Cash25</h2>
                     <p>{{ c25numbers|linebreaks  }}</p>
@@ -63,7 +65,7 @@
                         Draws every weekday but Sunday at 6:59 PM {# Last draw: {{ c25_date }} #}
                         <i class="bi bi-arrow-right"></i>
                     </a>
-                </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0" style="margin:auto">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i>
@@ -74,5 +76,5 @@
             </content>
         </div>
     </section>
-    <h6 class="card-footer" text-align=bottom>Disclaimer: WV Lottopy developers do not guarantee a win on the first or even the fortieth set of numbers. This is used to gain an <b><i>edge </i></b> over those who do not use this program.</h6>
+    <h6 class="card-footer bg-light" text-align=bottom>Disclaimer: WV Lottopy developers do not guarantee a win on the first or even the fortieth set of numbers. This is used to gain an <b><i>edge </i></b> over those who do not use this program.</h6>
 {% endblock content %}

@@ -1,9 +1,13 @@
 # WVLottopy: Matteo DiBiagio
+from fractions import Fraction as frac
 from sheet2dict import Worksheet
 import pandas as pd
 import requests
 from collections import Counter
 import csv
+
+def fraction_ratio(i):
+    return i/sum(i)
 
 url = 'https://wvlottery.com/draw-games/powerball/?game-analyze=powerball&what-to-search=historysearch&date-range=-1'
 header = {
@@ -69,7 +73,7 @@ for n in range(0, 26):
 
 sorted_nums = sorted(likely_nums)
 total_freq = sum(frequency + frequency_pb) 
-Chance = [(total_freq / 292201338) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+Chance = frac(total_freq, 292201338) # Chance = number call freq / all possible numbers i.e. 11238513
 Winning_Numbers = str("-".join(sorted_nums))
 
 #print("Likely numbers are . . . ", sorted_nums, "PB:", likely_pb, "\n", "With percent chance of winning being", chance[0]*100, "%")

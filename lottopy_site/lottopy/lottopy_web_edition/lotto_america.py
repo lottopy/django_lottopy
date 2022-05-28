@@ -1,5 +1,6 @@
 # WVLottopy: Matteo DiBiagio
 #from django_lottopy.lottopy_site.lottopy.lottopy_web_edition.megamil import Winning_Numbers
+from fractions import Fraction as frac
 from sheet2dict import Worksheet
 import pandas as pd
 import requests
@@ -70,7 +71,7 @@ for n in range(0, 10):
 
 sorted_nums = sorted(likely_nums)
 total_freq = sum(frequency + frequency_pb) 
-Chance = [(total_freq / 25989600) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+Chance = frac(total_freq, 25989600) # Chance = number call freq / all possible numbers i.e. 11238513
 Winning_Numbers = str("-".join(sorted_nums))
 
 #print("Likely numbers are . . . ", sorted_nums, "SB:", likely_pb, "\n", "With percent chance of winning being", chance[0]*100, "%")
