@@ -1,25 +1,22 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
 import os
 import csv
 
 #f = "~/projects/django_lottopy/lottopy_site/lottopy/lottopy_web_edititon/pb_ans.csv"
 
-#def files(f):
-#    reader = csv.DictReader(open(f))
-#    for row in reader:
-#        global numbers, pb, chance
-#        numbers = row[0-5]
-#        pb = row[6]
-#        chance = row[7]
-#        pbdata = pbdata(numbers=numbers,pb=pb,chance=chance)
-#        pbdata.save()
+# MAKE SURE TO START REDIS BEFORE SITE LOADS
 
 def base(request):
     return render(request, 'lottopy/base.html',
     {'nbar': 'home'})
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+@cache_page(CACHE_TTL)
 def home(request):
     # Powerball 
     module_dir = os.path.dirname(__file__)
@@ -77,7 +74,8 @@ def home(request):
         'lanumbers': lanumbers,
         'd3numbers': d3numbers,
         'd4numbers': d4numbers,
-        'c25numbers': c25numbers
+        'c25numbers': c25numbers,
+        'active': 'active'
         }
     return render(request, 'lottopy/home.html', context)
 

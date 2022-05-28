@@ -194,6 +194,19 @@ p {
   margin-bottom: 1rem;
 }
 
+feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #e9ecef;
+}
+
+feature:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: 2px solid #ffffff !important;
+}
+
 abbr[title],
 abbr[data-bs-original-title] {
   -webkit-text-decoration: underline dotted;

@@ -1,4 +1,5 @@
 # WVLottopy: Matteo DiBiagio
+from fractions import Fraction as frac
 from sheet2dict import Worksheet
 import pandas as pd
 import requests
@@ -69,7 +70,7 @@ for n in range(0, 25):
 
 sorted_nums = sorted(likely_nums)
 total_freq = sum(frequency) 
-Chance  = [(total_freq / 177100) * 100] # Chance = number call freq / all possible numbers i.e. 11238513
+Chance  = frac(total_freq, 177100) # Chance = number call freq / all possible numbers i.e. 11238513
 Winning_Numbers = str("-".join(sorted_nums))
 
 #print("Likely numbers are . . . ", sorted_nums, "\n", "With percent chance of winning being", chance[0]*100, "%")

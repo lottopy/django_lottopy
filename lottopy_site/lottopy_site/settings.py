@@ -52,6 +52,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'lottopy_site.urls'
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE_ENABLED') != 'False'
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE_ENABLED') != 'False'
 
 # Templates Directory 
 TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
@@ -132,3 +134,14 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redis 
+#REDIS_HOST = 'localhost'
+#REDIS_PORT = 6379 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+    }
+}
+CACHE_TTL = 60 * 60 * 24
