@@ -1,16 +1,26 @@
 {% extends './base.html' %}
 {% load static %}
 {% block about %}
-    <title>About</title>
+    <head>
+        <title>About</title>
+        <meta name="viewport" content="width=device-width; initial-scale=1;" />
+        <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    </head>
     <h1 class="text-white">About this site</h1>
     <div class="container bg-light">
     <body>
-        <p>This site was made initally as a project to familiarize myself with Django, and to publicly make available a script I had written to find the most often returned lottery combinations.</p>
+        <p>This site was made initally as a project to familiarize myself with the web framework Django, and to publicly make available a script I had written to find the most likely lottery combinations.</p>
         <p>It started after two close friends of mine peaked my interest with their own ways to win the jackpot. One who thought it was all in location, and another who simply pulled numbers from his dreams and meditation (some winning +$10,000!)</p>
         <p>Although I do not claim to have a universal link or the secret to winning numbers, my goal is to give the best edge available using statistical and historical analysis on the lottery.</p>
         <p>The site is still in development, and I am working on adding more features, and improving the site's functionality.</p>
-        <p>If you have any suggestions or comments, please feel free to contact me at <a> site email dot com </a></p>
-        <a>wallets</a>
+        <p>I am currently working on cleaning some of the scripts involved as to open source them and allow others to do the same I have done in their state.</p>
+        <p>If you have any suggestions or comments, please feel free to contact me at <a> site email dot com </a> and please keep in mind this site is funded by those who support it, so any financial assistance is greatly appreciated. Paypal donations will be added when supported.</p>
+        <h2><i class="fa-solid fa-wallet"></i>Crypto Addresses</h2>
+        <p style="display:inline-block;"><i class="fa-brands fa-ethereum" style="padding:2px;"></i>
+            ETH - 0xE94dcBf3C25f268b947ab30ef941d87ef213Af22</p>
+        <p style="display:inline-block;"><i class="fa-brands fa-bitcoin" style="padding:2px;"></i>
+            BTC - bc1qx90pdxcaycssmpee3xq9ujffzq3dxsfkknvdyk</p>
+        <!-- <p style="display:inline-block;"><i class="fa-solid fa-litecoin-sign" style="padding:2px;"></i> -->
     </body>
     </div>
 {% endblock about %}
