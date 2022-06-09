@@ -16,18 +16,16 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p4+um@+npnfqv=mul^--gz@$36@&7^)h@o*72&yqd@n00x$%e&'
+SECRET_KEY = 'w=76&jm5z(xwiz#pk%%7^9e8-@tcwugm*5t#9w#7$ym^3nq%3a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -40,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fontawesomefree',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -151,3 +153,9 @@ CACHES = {
     }
 }
 CACHE_TTL = 60 * 60 * 24
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
+CELERY_TIMEZONE = "America/Eastern"
+CELERY_TASK_TRACK_STARTED = True
+#CELERY_TASK_TIME_LIMIT = 30 * 60

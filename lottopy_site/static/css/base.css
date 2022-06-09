@@ -55,7 +55,7 @@
   --bs-body-bg-rgb: 255, 255, 255;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-gradient: linear-gradient(180deg, rgba(25, 96, 248, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
@@ -665,6 +665,15 @@ progress {
     max-width: 1320px;
   }
 }
+
+.container-mid {
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  position: relative;
+}
+
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -4539,6 +4548,7 @@ textarea.form-control-lg {
 .card > .card-header + .list-group,
 .card > .list-group + .card-footer {
   border-top: 0;
+  text-align: bottom;
 }
 
 .card-body {
