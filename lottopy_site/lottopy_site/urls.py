@@ -16,15 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import views
 from lottopy.sitemaps import StaticViewSitemap
-from lottopy import views
+from lottopy import urls
 
 sitemaps = {
-    'static': StaticViewSitemap,
+    'static': StaticViewSitemap(),
 }
 
 urlpatterns = [
-    path('', include('lottopy.urls')),
+    path('', include(urls.urlpatterns)),
     path('admin/', admin.site.urls),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('sitemap.xml', views.sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]

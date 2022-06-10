@@ -1,6 +1,6 @@
 from django.contrib import sitemaps
-from django.urls import reverse, path
-from .views import home, about, robots_txt
+from django.urls import reverse
+#from .views import home, about, robots_txt
 
 class StaticViewSitemap(sitemaps.Sitemap):
     protocol = 'http'
@@ -8,7 +8,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
     changefreq='weekly'
 
     def items(self):
-        return ['home', 'about', 'robots_txt']
+        return ['home', 'about']
 
     def location(self, item):
         return reverse(item)
