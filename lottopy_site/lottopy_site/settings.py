@@ -20,12 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w=76&jm5z(xwiz#pk%%7^9e8-@tcwugm*5t#9w#7$ym^3nq%3a'
+#SECRET_KEY = 'EAT A DICK MY SITE IS SECURE'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+#DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'True'
+ADMINS = [('Matteo', 'clichemail1@gmail.com')]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 # Application definition
 
@@ -36,16 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "whitenoise.runserver_nostatic",
+    "django.contrib.staticfiles",
     'fontawesomefree',
-    'django.contrib.sites',
+    #'django.contrib.sites',
     'django.contrib.sitemaps',
+    #'django_cleanup.apps.CleanupConfig',
 ]
 
 SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "kolo.middleware.KoloMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,7 +71,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [TEMPLATE_DIR,os.path.join(TEMPLATE_DIR,'lottopy')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,13 +133,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = '/static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/home/williedynamite/projects/django_lottopy/lottopy_site/',
+    #os.path.join(BASE_DIR, "static"),
+    '/home/williedynamite/projects/django_lottopy/lottopy_site/static',
+    '/home/williedynamite/projects/django_lottopy/lottopy_site/lottopy/static',
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -159,3 +165,32 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
 CELERY_TIMEZONE = "America/Eastern"
 CELERY_TASK_TRACK_STARTED = True
 #CELERY_TASK_TIME_LIMIT = 30 * 60
+
+# DataFlair #Logging Information
+LOGGING = {
+    'version': 1,
+    # Version of logging
+    'disable_existing_loggers': False,
+    #disable logging 
+## Handlers #############################################################
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'dataflair-debug.log',
+        },
+########################################################################
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+## Loggers ####################################################################
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+        },
+    },
+}
