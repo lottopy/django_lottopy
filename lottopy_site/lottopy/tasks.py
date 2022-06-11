@@ -27,4 +27,5 @@ class data_task():
         data_task.all_nums.append(pb_file_path, mm_file_path, la_file_path, d3_file_path, d4_file_path, c25_file_path)
 
         return get_ans(all_nums)
-        #return pbnumbers, mmnumbers, lanumbers, d3numbers, d4numbers, c25numbers
+
+        

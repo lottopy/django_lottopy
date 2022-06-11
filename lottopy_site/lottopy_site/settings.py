@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-#DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'True'
+#DEBUG = False
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'True'
 ADMINS = [('Matteo', 'clichemail1@gmail.com')]
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 INSTALLED_APPS = [
     'lottopy.apps.LottopyConfig',
+    #'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,8 +43,10 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     'fontawesomefree',
-    #'django.contrib.sites',
+    #'ckeditor',
+    'crispy_forms',
     'django.contrib.sitemaps',
+    #'django.contrib.sites',
     #'django_cleanup.apps.CleanupConfig',
 ]
 
@@ -51,7 +54,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "kolo.middleware.KoloMiddleware",
+    #"kolo.middleware.KoloMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,6 +132,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -148,6 +152,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#CKEDITOR_BASEPATH='/static/ckeditor/'
+#CKEDITOR_UPLOAD_PATH = "uploads/"
+
 
 # Redis 
 #REDIS_HOST = 'localhost'
