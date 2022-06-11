@@ -19,13 +19,16 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.sitemaps import views
 from lottopy.sitemaps import StaticViewSitemap
 from lottopy import urls
+#from blog import urls as blog_urls
 
 sitemaps = {
     'static': StaticViewSitemap(),
 }
 
 urlpatterns = [
-    path('', include(urls.urlpatterns)),
-    path('admin/', admin.site.urls),
+    path('', include(urls.urlpatterns), name='home'),
+    #path('blog/', include(blog_urls.urlpatterns), name='blog'),
+    path('admin/', admin.site.urls, name='admin'),
     path('sitemap.xml', views.sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    #path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

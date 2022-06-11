@@ -1,10 +1,12 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.views.decorators.http import require_GET
-from django.shortcuts import render
+from django.shortcuts import render, redirect 
+from django.contrib import messages
 from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.views.decorators.cache import cache_page
+from .forms import SubscribersForm
 from .models import Lotto
 import logging 
 
@@ -19,11 +21,11 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 #    {'nbar': 'home'})
 logger = logging.getLogger(__file__)
 
-
 @cache_page(CACHE_TTL)
 def home(request):    
     context = {
         'nbar': 'home',
+        'title': 'Home',
         'pbnumbers': Lotto.get_ans(Lotto.files[0]),
         'mmnumbers': Lotto.get_ans(Lotto.files[1]),
         'lanumbers': Lotto.get_ans(Lotto.files[2]),
@@ -36,8 +38,17 @@ def home(request):
 
 @cache_page(CACHE_TTL)
 def about(request):
+    form = SubscribersForm(request.POST)
+    if request.method == 'POST':
+        form = SubscribersForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Subscribed successfully')
+            return redirect('/about')
+    else:
+        form = SubscribersForm()
     return render(request, 'about.html',
-    {'nbar': 'about', 'title': 'About'})
+    {'nbar': 'about', 'title': 'About', 'form': form})
 
 @cache_page(CACHE_TTL)
 @require_GET
