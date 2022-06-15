@@ -24,11 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'True'
+DEBUG = False
+#DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'True'
 ADMINS = [('Matteo', 'clichemail1@gmail.com')]
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '23.92.22.47:8000']
+ALLOWED_HOSTS = ['23.92.22.47', 'localhost']
 
 # Application definition
 
@@ -54,7 +55,6 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #"kolo.middleware.KoloMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -142,8 +142,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [
     #os.path.join(BASE_DIR, "static"),
-    '/home/williedynamite/projects/django_lottopy/lottopy_site/static',
-    '/home/williedynamite/projects/django_lottopy/lottopy_site/lottopy/static',
+    '/home/williedynamite/django_lottopy/lottopy_site/static',
+    '/home/williedynamite/django_lottopy/lottopy_site/lottopy/static',
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
