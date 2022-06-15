@@ -1,4 +1,4 @@
-#!/home/williedynamite/projects/django_lottopy/django_lottopy/bin/python
+#!/home/williedynamite/django_lottopy/django_lottopy/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

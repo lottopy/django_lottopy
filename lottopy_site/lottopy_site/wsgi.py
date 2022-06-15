@@ -15,4 +15,4 @@ os.environ['DJANGO_SETTINGS_MODULE']='lottopy_site.settings'
 #os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lottopy_site.settings')
 application = get_wsgi_application()
 
-virtualenv = "/home/williedynamite/projects/django_lottopy/django_lottopy/bin/activate"
+#virtualenv = "/home/williedynamite/projects/django_lottopy/django_lottopy/bin/activate"

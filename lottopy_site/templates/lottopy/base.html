@@ -3,14 +3,15 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" property="og:description" content="A site created to predict winning West Virginia Lottery numbers" />
         <meta name="keywords" content="West Virginia, Lottery, Predictions, Numbers, Winning, how, to, win, thw, lottery, free, generator, edge, best" />
         <meta name="author" content="Matteo DiBiagio" />
         {% if title %}
-            <title>WV Lottopy | {{title}} </title>
+            <title>WV Lottery Predictor | {{title}} </title>
         {% else %}
-            <title>WV Lottopy | Homepage</title>
+            <title>WV Lottery Predictor | Homepage</title>
         {% endif %}
         <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
@@ -20,8 +21,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}"> 
-                    <img src="{% static 'pics/wvout.png' %}" width="30" id="" style="padding-top:2px" float="left">
-                    WV Lottery Predictions</a>
+                    <img src="{% static 'pics/wvout.png' %}" width="30" id="" style="padding-top:2px" float="left" alt="WV outline">
+                    WV Lottery Predictor</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
