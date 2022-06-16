@@ -5,12 +5,12 @@
     <h1 class="text-white">About this site</h1>
     <div class="container bg-light rounded-3">
     <body>
-        <p>This site was made initally as a project to familiarize myself with the web framework Django, and to publicly make available a program I had written to find the most likely lottery combinations.</p>
+	    <p>This site was made initally as a project to familiarize myself with the web framework Django, and to publicly make available a program I had written to find the most likely lottery combinations. It is <b>NOT</b> in affiliation with the West Virginia State Lottery although they are listed above to help confirm winning numbers.</p>
         <p>It began when two close friends of mine piqued my interest with their own ways to win the jackpot. One who thought it was all in location, and another who simply pulled numbers from his dreams and meditation (some winning +$10,000!)</p>
         <p>Although I do not claim to have a universal link or the secret to winning numbers, my goal is to give the best edge available using statistical and historical analysis on the lottery.</p>
         <p>The site is still in development and I am working on adding more features and improving the site's functionality.</p>
-        <p>I am also currently working on cleaning and refactoring the code involved as to open source it and allow others to make their own winning number generator for their state.</p>
-        <p>If you have any suggestions or comments, please feel free to contact me at <u style="color:blue"> admin at wvlotterypredictor dot xyz </u> and please keep in mind this site is funded by the donations of those who support it, so any financial assistance is greatly appreciated.</p>
+	<p>I have created a cleaned and stripped down version of the scripts involved and they are hosted <a href="https://www.github.com/lottopy/wvlottopy">here.</a> I encourage anyone interested to port it to their own local lotteries.</p>
+        <p>If you have any suggestions or comments, please feel free to contact me at <u style="color:blue">admin at wvlotterypredictor dot xyz</u> and please keep in mind this site is funded by the donations of those who support it, so any financial assistance is greatly appreciated.</p>
         <p>For updates subscribe to the mailing list at the bottom of this page (I will not disclose or abuse your personal information) or follow me on the twitter linked in the navigation bar. Thank you for visiting!</p>
         <h2><i class="fa-solid fa-wallet"></i>Crypto Addresses</h2>
         <p style="display:inline-block;"><i class="fa-brands fa-ethereum" style="padding:2px;"></i>
@@ -30,11 +30,11 @@
     </body>
     </div>
         <div class="container bg-light rounded-3">
-            <!--{% for message in messages %}
+            {% for message in messages %}
             <div class='alert alert-success'>
                 {{ message }}
             </div>
-            {% endfor %}-->
+	    {% endfor %}
             <h5>Subscribe to Newsletter</h5>
             <form method="POST">
                 {% csrf_token %}
