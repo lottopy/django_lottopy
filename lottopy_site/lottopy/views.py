@@ -36,9 +36,8 @@ def home(request):
 
     return render(request, 'home.html', context)
 
-@cache_page(CACHE_TTL)
+#@cache_page(CACHE_TTL)
 def about(request):
-    form = SubscribersForm(request.POST)
     if request.method == 'POST':
         form = SubscribersForm(request.POST)
         if form.is_valid():

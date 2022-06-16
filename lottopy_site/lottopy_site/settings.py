@@ -29,7 +29,7 @@ DEBUG = False
 ADMINS = [('Matteo', 'clichemail1@gmail.com')]
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '23.92.22.47:8000']
-ALLOWED_HOSTS = ['23.92.22.47', 'localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'wvlotterypredictor.xyz','www.wvlotterypredictor.xyz']
 
 # Application definition
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     #'ckeditor',
     'crispy_forms',
     'django.contrib.sitemaps',
+    'corsheaders',
     #'django.contrib.sites',
     #'django_cleanup.apps.CleanupConfig',
 ]
@@ -56,6 +57,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -65,8 +67,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'lottopy_site.urls'
-SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE_ENABLED') != 'False'
-CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE_ENABLED') != 'False'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ['https://wvlotterypredictor.xyz', 'https://www.wvlotterypredictor.xyz']
+CORS_ALLOW_ALL_ORIGINS = True 
 
 # Templates Directory 
 TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
