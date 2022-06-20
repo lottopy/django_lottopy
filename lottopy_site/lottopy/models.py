@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 from django.core.mail import send_mail
 import os, csv
 
@@ -38,7 +39,7 @@ class MailMessage(models.Model):
                 user.email_user(self.subject, self.body, self.attachment)
                 send_mail(str(self.subject),
                       str(self.body),
-                      'from@admin.com',
+                      'admin@wvlotterypredictor.xyz',
                       user_list,
                       fail_sliently=False)
 
