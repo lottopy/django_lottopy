@@ -3,7 +3,7 @@ from django.urls import reverse
 #from .views import home, about, robots_txt
 
 class StaticViewSitemap(sitemaps.Sitemap):
-    protocol = 'http'
+    protocol = 'https'
     priority=.5,
     changefreq='weekly'
 

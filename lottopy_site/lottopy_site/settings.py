@@ -29,7 +29,7 @@ DEBUG = False
 ADMINS = [('Matteo', 'clichemail1@gmail.com')]
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '23.92.22.47:8000']
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'wvlotterypredictor.xyz','www.wvlotterypredictor.xyz']
+ALLOWED_HOSTS = ['wvlotterypredictor.xyz','www.wvlotterypredictor.xyz', 'localhost', '127.0.0.1']
 
 # Application definition
 
