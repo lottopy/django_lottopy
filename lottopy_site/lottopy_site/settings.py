@@ -24,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-#DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'True'
+#DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
+DEBUG = False 
 ADMINS = [('Matteo', 'clichemail1@gmail.com')]
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '23.92.22.47:8000']
-ALLOWED_HOSTS = ['wvlotterypredictor.xyz','www.wvlotterypredictor.xyz', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['wvlotterypredictor.xyz','www.wvlotterypredictor.xyz', 'localhost', '127.0.0.1', '192.168.0.123']
 
 # Application definition
 
@@ -43,12 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
-    'fontawesomefree',
     #'ckeditor',
     'crispy_forms',
+    'crispy_bootstrap4',
     'django.contrib.sitemaps',
     'corsheaders',
-    #'django.contrib.sites',
+    'django.contrib.sites',
     #'django_cleanup.apps.CleanupConfig',
 ]
 
@@ -71,6 +71,9 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ['https://wvlotterypredictor.xyz', 'https://www.wvlotterypredictor.xyz']
 CORS_ALLOW_ALL_ORIGINS = True 
+
+# HSTS Setting for Cloudflare
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Templates Directory 
 TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
@@ -136,18 +139,19 @@ USE_I18N = True
 
 USE_TZ = True
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = "/home/williedynamite/django_lottopy/lottopy_site/staticfiles"
 
 STATICFILES_DIRS = [
     #os.path.join(BASE_DIR, "static"),
     '/home/williedynamite/django_lottopy/lottopy_site/static',
-    '/home/williedynamite/django_lottopy/lottopy_site/lottopy/static',
+    #'/home/williedynamite/django_lottopy/lottopy_site/lottopy/static',
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -167,7 +171,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379',
+        'LOCATION': 'redis://127.0.0.1:6379/2',
     }
 }
 CACHE_TTL = 60 * 60 * 24
@@ -200,9 +204,13 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['file', 'console'],
-            'level': 'DEBUG',
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
             'propagate': True,
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+        },
+        'django.template': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+            'propagate': False,
         },
     },
 }

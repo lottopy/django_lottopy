@@ -3,12 +3,12 @@ from django.urls import reverse
 #from .views import home, about, robots_txt
 
 class StaticViewSitemap(sitemaps.Sitemap):
-    protocol = 'https'
+    protocol = 'http'
     priority=.5,
     changefreq='weekly'
 
     def items(self):
-        return ['home', 'about']
+        return ['home', 'about', 'links']
 
     def location(self, item):
         return reverse(item)

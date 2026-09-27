@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-	<meta name="format-detection" content="telephone=no"/>
+	<meta name="format-detection" content="telephone=no, date=no, address=no, email=no"/>
 	<meta name="theme-color" content="#212529">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" property="og:description" content="A site created to predict winning West Virginia Lottery numbers" />
@@ -15,8 +15,29 @@
             <title>WV Lottery Predictor | Homepage</title>
         {% endif %}
         <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css">
+	<style>
+	/* prevent long unbroken strings (wallet addresses, onion links) from forcing horizontal
+	   overflow on mobile, which pushes the white content area off-center and exposes background */
+	html, body {
+		overflow-x: hidden;
+		max-width: 100%;
+	}
+	p, a {
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+	/* some mobile browsers still turn the numbers into phone links, keep them the same color as the text around them */
+	a[href^="tel"], a[x-apple-data-detectors] {
+		color: inherit !important;
+		text-decoration: none !important;
+		font-size: inherit !important;
+		font-family: inherit !important;
+		font-weight: inherit !important;
+		line-height: inherit !important;
+	}
+	</style>
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon/favicon.ico' %}" />
-        <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
 	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
@@ -34,18 +55,22 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about'%}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'links'%}">Links</a></li>
                         <li class="nav-item"><a class="nav-link" target="_blank" rel="noreferrer noopener" href="https://wvlottery.com/">Official WV Lottery Site</a></li>
                         <li class="nav-item"><a class="nav-link" target="_blank" rel="noreferrer noopener" href="https://twitter.com/wv_lotto"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-	<body class="sticky" style="background-attachment:fixed;background-color:rgb(163, 161, 161);background-image: url(https://static.vecteezy.com/system/resources/previews/000/200/589/original/vector-retro-pattern-background.jpg);" >
+	<!-- <body class="sticky" style="background-attachment:fixed;background-color:rgb(163, 161, 161);background-image: url(https://static.vecteezy.com/system/resources/previews/000/200/589/original/vector-retro-pattern-background.jpg);" > --> 
+	<body class="sticky" style="background-attachment:fixed;background-color:rgb(163, 161, 161);background-image: url('{% static 'assets/vector-retro-pattern-background.avif' %}')" >
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
                 {% block content %}{% endblock %} 
                 {% block about %}{% endblock %}
+                {% block links %}{% endblock %}
+
                
             </div>
         </div>

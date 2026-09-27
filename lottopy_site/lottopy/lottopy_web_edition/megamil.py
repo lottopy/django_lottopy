@@ -1,5 +1,6 @@
 # WVLottopy megamil: Matteo DiBiagio
 from fractions import Fraction as frac
+from math import comb
 import pandas as pd
 import requests
 from collections import Counter
@@ -7,19 +8,32 @@ import csv
 
 
 def get_data():
-    url = 'https://wvlottery.com/draw-games/mega-millions/?game-analyze=mega-millions&what-to-search=historysearch&date-range=-1'
+    # Old records from the excel sheets, wvlottery.com took these down but they go back to the early 90s on some games
+    df_old = pd.read_excel('./excel_lotto_records/lotto_megamil.xlsx')
+    salvaged = df_old[['Date', 'Numbers', 'MB']]
+
+    url = 'https://gateway.loyalty.wvlottery.com/services/jackpot/api/v1/jackpot-results?gameId=20&jackpotStatus=PAYABLE&size=500&sort=externalId,drawDate,desc&page='
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
-        "X-Requested-With": "XMLHttpRequest"
     }
-
-    # Get web data
-    r = requests.get(url, headers=header)
-    dfs = pd.read_html(r.text)
+    # Get web data, the new site pulls past draws from json 500 at a time
+    web = {'Date': [], 'Numbers': [], 'MB': []}
+    page = 0
+    while True:
+        r = requests.get(url + str(page), headers=header)
+        data = r.json()
+        for x in data['content']:
+            web['Date'].append(x['drawingDate'])
+            web['Numbers'].append('–'.join(str(n['data']) for n in x['resultData'] if n['type'] == 'REGULAR'))
+            web['MB'].append([n['data'] for n in x['resultData'] if n['type'] == 'SPECIAL'][0])
+        if data['last']:
+            break
+        page += 1
+    dfs = [pd.DataFrame(web)]
     pd.set_option('display.max_rows', None)
     # Specifies no max rows, otherwise only shows 10 records
-    df = dfs[0]
-    df2 = df[['Date', 'Numbers', 'MB', 'MP']]
+    df = pd.concat([dfs[0], salvaged], ignore_index=True)
+    df2 = df[['Date', 'Numbers', 'MB']]
     date = list(df2['Date']) 
     nums = list(df2['Numbers'].astype('str')) 
     MBs = list(df2['MB'].astype('int'))
@@ -28,11 +42,16 @@ def get_data():
 date, nums, MBs = get_data()
 
 # Formatting 
+# Site numbers come split by – and the excel records by - so it splits on both
 hyphenfree = []
 for x in nums:
-    hyphenfree.append(x.replace('–',', ')) 
+    hyphenfree.append(x.replace('–',', ').replace('-',', ')) 
 splitlist = ", ".join(hyphenfree)
 sep = splitlist.split(", ")
+# Only count numbers that can still be called, the ball ranges have changed over the years
+# so the old records have some numbers that dont exist in the game anymore
+sep = [x for x in sep if x.isdigit() and 1 <= int(x) <= 70]
+MBs = [x for x in MBs if 1 <= x <= 24]
 
 for n in range(0, 70):
     most_common= Counter(sep).most_common(5)
@@ -44,16 +63,17 @@ for n in range(0, 25):
     MB = [v[0] for v in most_common_mb]
     frequency_mb = [v[-1] for v in most_common_mb]
 
-sorted_nums = sorted(likely_nums)
-total_freq = sum(frequency + frequency_mb) 
-Chance = frac(total_freq, 302575350) # Chance = number call freq / all possible numbers i.e. 11238513
-Winning_Numbers = str("-".join(sorted_nums))
+sorted_nums = sorted(likely_nums, key=lambda x: (len(x), x))
+# Chance = 1 / every possible ticket, 70 choose 5 white balls times 24 mega balls = 290472336
+# every ticket has the same odds, the forecast just goes with the numbers that get called the most
+Chance = frac(1, comb(70, 5) * 24)
+Forecast = str(" - ".join(sorted_nums))
 
-#print(f"Likely numbers are . . .  {Winning_Numbers} MB: {MB}\n"
+#print(f"Likely numbers are . . .  {Forecast} MB: {MB}\n"
 #f"With percent chance of winning being {Chance}")
 
-d = dict(((k, eval (k)) for k in ('Winning_Numbers', 'MB', 'Chance')))
-h = 'Winning_Numbers', 'MB', 'Chance'
+d = dict(((k, eval (k)) for k in ('Forecast', 'MB', 'Chance')))
+h = 'Forecast', 'MB', 'Chance'
 f = open('mm_ans.csv', 'w', encoding='utf_8')
 writer = csv.DictWriter(f, fieldnames=h)
 writer.writeheader()
