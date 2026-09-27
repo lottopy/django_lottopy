@@ -6,7 +6,7 @@ import os, csv
 # Create your models here.
 class Lotto():
     module_dir = os.path.dirname(__file__)
-    names = list(["pb", "mm", "la", "d3", "d4", "c25"])
+    names = list(["pb", "mm", "la", "d3", "d4", "c25", "cp"])
     files = []
     for i in names:
         files.append(os.path.join(module_dir,"lottopy_web_edition",i+"_ans.csv"))

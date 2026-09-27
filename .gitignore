@@ -28,3 +28,6 @@ __pycache__
 db.sqlite3
 static/
 dump.rdb
+
+# Scripts # 
+monitor*

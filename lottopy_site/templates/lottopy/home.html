@@ -2,17 +2,17 @@
 {% block content %}
     <div class="container bg-light">
     <h1>Find your lucky numbers and hit big!</h1>
-    <p class="lead border-bottom">The purpose of this site is to analyze existing West Virginia winning lottery numbers, and return only the most likely combinations. This can be used to gain an edge on the lottery system, and help you win big! Numbers updated daily.</p>
+    <p class="lead border-bottom">The purpose of this site is to analyze existing West Virginia winning lottery numbers, and return only the most likely combinations. This can be used to gain an edge on the lottery system, and help you win big! Numbers updated daily, and served up faster than the official WV Lottery site itself!</p>
     </div>
-    <section class="py-5" id="features">
+    <section class="py-5 nodecs" id="features">
         <div class="container d-grid px-5 my-5">
-            <content class="row gx-5 ">
+            <content class="row gx-5 justify-content-center">
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
-                    <h2 class="col-auto"  >PowerBall</h2>
+                    <h2 class="col-auto" >PowerBall</h2>
                     <p>{{ pbnumbers|linebreaks }}</p>
 		    <p><i>
-                        Draws every Monday, Wednesday, and Saturday at 11:00 PM
+                        Draws every Monday, Wednesday, and Saturday at 10:59 PM
 		    </i></p>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <h2 class="col-auto"  >Mega Millions</h2>
                     <p>{{ mmnumbers|linebreaks  }}</p>
 		    <p><i>
-                        Draws every Tuesday and Friday night at 10:59 PM 
+                        Draws every Tuesday and Friday night at 11:00 PM 
 		    </i></p>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <h2 class="col-auto"  >Lotto America</h2>
                     <p>{{ lanumbers|linebreaks  }}</p>
 		    <p><i>
-                        Draws every Wednesday and Saturday night at 10:30 PM 
+                        Draws every Monday, Wednesday, and Saturday night at 10:15 PM 
                         
 		    </i></p>
                     </div>
@@ -39,8 +39,8 @@
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
                     <h2 class="col-auto"  >Daily3</h2>
                     <p>{{ d3numbers|linebreaks  }}</p>
-		    <p><i>
-                        Draws every day but Sunday at 6:59 PM 
+		    <p><i>Chance is for playing it as a box (any order), 
+                        draws every day but Sunday at 6:59 PM 
 		    </i></p>
                     </div>
                 </div>
@@ -48,8 +48,8 @@
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
                     <h2 class="col-auto"  >Daily4</h2>
                     <p>{{ d4numbers|linebreaks  }}</p>
-		    <p><i>
-                        Draws every day but Sunday at 6:59 PM
+		    <p><i>Chance is for playing it as a box (any order), 
+                        draws every day but Sunday at 6:59 PM
 		    </i></p>
                     </div>
                 </div>
@@ -58,18 +58,21 @@
                     <h2 class="col-auto"  >Cash25</h2>
                     <p>{{ c25numbers|linebreaks  }}</p>
 		    <p><i>
-                        Draws every day but Sunday at 6:59 PM
+                        Draws every Monday, Tuesday, Thursday, and Friday at 6:59 PM
 		    </i></p>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0 container-mid">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
-                    <h2 class="col-auto">Cash Pop coming soon!</h2>
-                    <p>Cash Pop is a new game from the WV lottery, if anyone would like to send support to get it done faster check the About page for more info on how to help!</p>
-                </div>
+                    <h2 class="col-auto"  >Cash Pop</h2>
+                    <p>{{ cpnumbers|linebreaks  }}</p>
+		    <p><i>
+                        Draws every 15 minutes from 5:15 AM to 3:30 AM
+		    </i></p>
+                    </div>
                 </div>
             </content>
         </div>
     </section>
-    <h6 class="card-footer bg-light">Disclaimer: WV Lottopy developers do not guarantee a win. This is used to gain an <b><i>edge</i></b> over those who do not use this program.</h6>
+    <h6 class="card-footer bg-light">Disclaimer: WV Lottery Predictor developers do not guarantee a win. This is used to gain an <b><i>edge</i></b> over those who do not use this program.</h6>
 {% endblock content %}
