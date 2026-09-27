@@ -1,0 +1,3 @@
+[submodule "lottopy_site/lottopy/lottopy_web_edition"]
+	path = lottopy_site/lottopy/lottopy_web_edition
+	url = https://github.com/lottopy/lottopy_web_edition.git
