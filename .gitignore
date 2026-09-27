@@ -31,3 +31,5 @@ dump.rdb
 
 # Scripts # 
 monitor*
+lottopy_site/staticfiles/
+*.zip
