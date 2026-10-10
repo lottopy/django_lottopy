@@ -4,7 +4,7 @@ source /home/williedynamite/django_lottopy/django_lottopy/bin/activate
 export DJANGO_DEBUG=False
 source /home/williedynamite/django_lottopy/.env
 #export TMPDIR='/home/williedynamite/django_lottopy/tmp'
-gunicorn -c /home/williedynamite/django_lottopy/lottopy_site/gunicorn.conf.py --bind unix:/home/williedynamite/django_lottopy/run/gunicorn.sock --log-level debug --timeout 600 lottopy_site.wsgi:application --reload
+gunicorn -c /home/williedynamite/django_lottopy/lottopy_site/gunicorn.conf.py --bind unix:/home/williedynamite/django_lottopy/run/gunicorn.sock --log-level info --timeout 600 lottopy_site.wsgi:application --reload
 
 #redis-server &
 #PYTHONPATH=`pwd`/.. gunicorn --bind 0.0.0.0:8000 lottopy_site.wsgi:applicationDebug=True
