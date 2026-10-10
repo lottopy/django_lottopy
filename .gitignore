@@ -33,3 +33,12 @@ dump.rdb
 monitor*
 lottopy_site/staticfiles/
 *.zip
+
+# Rotated logs (logrotate) and nginx log dir
+log/
+*.log.*
+
+# Never publish: site settings (admin email etc.), the live database and cache dump
+lottopy_site/lottopy_site/settings.py
+lottopy_site/db.sqlite3
+lottopy_site/dump.rdb
