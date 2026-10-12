@@ -42,3 +42,6 @@ log/
 lottopy_site/lottopy_site/settings.py
 lottopy_site/db.sqlite3
 lottopy_site/dump.rdb
+
+# Old venv kept on the server after a Python upgrade
+*.venv-old/
