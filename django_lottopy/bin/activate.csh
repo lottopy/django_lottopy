@@ -13,13 +13,15 @@ setenv VIRTUAL_ENV /home/williedynamite/django_lottopy/django_lottopy
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"
+setenv VIRTUAL_ENV_PROMPT django_lottopy
 
 
-set _OLD_VIRTUAL_PROMPT="$prompt"
+if ($?prompt) then
+    set _OLD_VIRTUAL_PROMPT="$prompt"
 
-if (! "$?VIRTUAL_ENV_DISABLE_PROMPT") then
-    set prompt = '(django_lottopy) '"$prompt"
-    setenv VIRTUAL_ENV_PROMPT '(django_lottopy) '
+    if (! "$?VIRTUAL_ENV_DISABLE_PROMPT") then
+        set prompt = "("django_lottopy") $prompt:q"
+    endif
 endif
 
 alias pydoc python -m pydoc

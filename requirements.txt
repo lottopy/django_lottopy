@@ -19,12 +19,9 @@ django-ckeditor==6.7.3
 django-cleanup==9.0.0
 django-cors-headers==4.9.0
 django-crispy-forms==2.7
-django-excel-base==1.0.7
-django-excel-response2==3.0.6
 django-js-asset==4.2.0
 django-six==1.0.5
 et_xmlfile==2.0.0
-excel-base==1.0.4
 fontawesomefree==6.6.0
 gunicorn==25.3.0
 idna==3.20
@@ -39,7 +36,6 @@ python-dateutil==2.9.0.post0
 pytz==2026.5
 redis==8.1.0
 requests==2.34.2
-screen==1.0.1
 setuptools==80.10.2
 sheet2dict==0.1.5
 six==1.17.0
