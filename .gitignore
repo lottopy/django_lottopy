@@ -45,3 +45,8 @@ lottopy_site/dump.rdb
 
 # Old venv kept on the server after a Python upgrade
 *.venv-old/
+
+# old local copy of lottopy_web_edition, not part of the site
+lottopy_site/lottopy/old/
+# rotated gunicorn logs
+*.log-*
