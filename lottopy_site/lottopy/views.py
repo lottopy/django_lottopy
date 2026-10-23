@@ -27,6 +27,11 @@ def zipdownload(request):
         file_path = os.path.join(settings.STATIC_ROOT, 'files', 'mods.zip')
         return FileResponse(open(file_path, 'rb'), as_attachment=True, filename='mods.zip')
 
+def recordsdownload(request):
+        # excel records zip, rebuilt every night by ~/scripts/build_records_zip.py
+        file_path = os.path.join(settings.STATIC_ROOT, 'files', 'wvlottopy_records.zip')
+        return FileResponse(open(file_path, 'rb'), as_attachment=True, filename='wvlottopy_records.zip')
+
 @cache_page(CACHE_TTL)
 def home(request):    
     context = {
